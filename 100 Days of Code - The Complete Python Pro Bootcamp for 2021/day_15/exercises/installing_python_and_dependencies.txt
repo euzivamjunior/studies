@@ -1,0 +1,13 @@
+PYTHON DOWNLOAD
+-----------------------------------------------------------
+https://www.python.org/downloads/
+
+
+PYCHARM IDE DOWNLOAD
+-----------------------------------------------------------
+https://www.jetbrains.com/pycharm/download/#section=windows
+
+
+PEP-8 STYLE GUIDE
+-----------------------------------------------------------
+https://www.python.org/dev/peps/pep-0008/
