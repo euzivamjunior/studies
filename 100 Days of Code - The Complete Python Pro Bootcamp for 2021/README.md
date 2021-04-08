@@ -17,5 +17,6 @@ Master Python by building 100 projects in 100 days. Learn to build websites, gam
   ...
 
 - Day 15 [Coffee Machine](/100%20Days%20of%20Code%20-%20The%20Complete%20Python%20Pro%20Bootcamp%20for%202021/day_15/project/coffee-machine-start/)
+- Day 16 [OOP - Coffee Machine](/100%20Days%20of%20Code%20-%20The%20Complete%20Python%20Pro%20Bootcamp%20for%202021/day_16/project/oop-coffee-machine-start/)
 
 # README IN EDITION... I need to add all the days already done :/ :wrench:
