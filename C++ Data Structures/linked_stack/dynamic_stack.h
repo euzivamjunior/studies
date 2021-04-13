@@ -1,15 +1,18 @@
+// define default type for dynamic stack object
 typedef int ItemType;
 
 /*
-    STRUCT NODE
+    STRUCT
     ---------------------------------------------------------------------------------------
     structure in this case is similar to an class.
     To know more about the differences between struct and class, access the link below
     https://pt.stackoverflow.com/questions/16181/qual-a-diferen%C3%A7a-entre-struct-e-class
 
-    struct Node is used to generate an object with 2 atributes:
-    value, that is used to store an value of 'ItemType' type
-    next, is a pointer to save the next node in the dynamic stack.
+    STRUCT NODE 
+    ---------------------------------------------------------------------------------------
+    is used to generate an object with 2 atributes:
+        value, that is used to store an value of 'ItemType' type
+        next, is a pointer to save the next node in the dynamic stack.
 */
 struct Node{
     // value of node
@@ -20,7 +23,8 @@ struct Node{
 
 class DynamicStack{
     private:
-    Node* top;
+    // pointer to top node
+    Node* TopNode;
 
     public:
     // constructor
