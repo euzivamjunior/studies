@@ -49,7 +49,7 @@ using namespace std;
             cout<< "There's no element to pop." << endl;
             return 0;
         } else{
-            // 
+            // decrement size and return structure element
             size--;
             return structure[size];
         }
