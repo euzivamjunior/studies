@@ -26,7 +26,7 @@ using namespace std;
         new node. 
     */
     bool DynamicStack::is_full(){
-        // create a pointer named 'newNode'
+        // create a Node pointer named 'newNode'
         Node* newNode;
         // try create a new node
         try{
@@ -39,7 +39,20 @@ using namespace std;
     }
     // insert an element in the dynamic stack
     void DynamicStack::push(ItemType item){
-
+        if (is_full()){
+            cout << "There's no memory available for alocate a new element" << endl;
+            cout << "The element can't be pushed" << endl;
+        } else{
+            // create a Node pointer "newNode"
+            Node* newNode = new Node;
+            // set item value to the new node
+            // as newNode is a pointer, then the assignment is made with "->"
+            newNode->value = item;
+            // set TopNode as newNode.next
+            newNode->next = TopNode;
+            // set TopNode as newNode
+            TopNode = newNode;
+        }
     }
     // remove an element from the dynamic stack
     ItemType DynamicStack::pull(){
