@@ -1,7 +1,7 @@
 // define default type for stack object
 typedef int ItemType;
 // max number of itens on the queue
-const int max_itens = 5;
+const int max_itens = 100;
 
 class Queue{
     private:
