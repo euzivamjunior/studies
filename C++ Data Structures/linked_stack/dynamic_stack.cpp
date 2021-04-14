@@ -10,7 +10,19 @@ using namespace std;
     }
     // destructor
     DynamicStack::~DynamicStack(){
-
+        // create a tempNode to go throught the stack
+        Node* tempNode;
+        /*
+            go through the stack deleting the nodes until the tempNode reaches 
+            the nullptr value, always creating a refenrence to TopNode as 
+            tempNode, then change the TopNode to the next node, and delete the 
+            previus TopNode by the tempNode reference.
+        */
+        while (TopNode != nullptr){
+            tempNode = TopNode;
+            TopNode = TopNode->next;
+            delete tempNode;
+        }
     }
     // check if dynamic stack is empty
     bool DynamicStack::is_empty(){
@@ -56,9 +68,42 @@ using namespace std;
     }
     // remove an element from the dynamic stack
     ItemType DynamicStack::pull(){
-
+        if (is_empty()){
+            cout << "The stack is empty!" << endl;
+            cout<< "There's no element to pull." << endl;
+            return 0;
+        } else {
+            /*
+                Create a temp node, that pointer to the current top node
+                in this way, after remove the current top node from stack, 
+                it can be possible to delete this node from the memory by 
+                using the tempNode.
+            */
+            Node* tempNode;
+            tempNode = TopNode;
+            // catch value from TopNode
+            ItemType item = TopNode->value;
+            // the new TopNode becomes the next Node from the current TopNode
+            TopNode = TopNode->next;
+            // delete tempNode that are reference to the current removed Node
+            delete tempNode;
+            // return item (value) from the removed Node
+            return item;
+        }
     }
     // print all elements in the dynamic stack
-    void print(){
-
+    void DynamicStack::print(){
+        // create a tempNode to go throught the stack
+        Node* tempNode = TopNode;
+        /*
+            go through the stack until the tempNode reaches the nullptr value,
+            which means that there are no more nodes in the stack, i.e. all the
+            nodes in the stack was already been accessed by the tempNode.
+        */
+       cout << "Stack (view from top to the bottom): [ ";
+        while (tempNode != nullptr){
+            cout << tempNode->value << " ";
+            tempNode = tempNode->next;
+        }
+        cout << "]\n";
     }
