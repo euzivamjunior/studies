@@ -1,0 +1,1 @@
+g++ main.cpp dynamic_stack.cpp -o main.exe
