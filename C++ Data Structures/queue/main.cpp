@@ -16,7 +16,7 @@ int main(){
         cout << "Type 1 to insert a element!" << endl;
         cout << "Type 2 to remove a element!" << endl;
         cout << "Type 3 to print the stack elements" << endl;
-        cout << "Type 4 to print the lenght of the queue" << endl;
+        cout << "Type 4 to print the length of the queue" << endl;
 
         cin >> control;
 
@@ -36,7 +36,7 @@ int main(){
         } else if (control == 3){
             queue1.print();
         } else if (control == 4){
-            cout << "The lenght of the queue is: " << queue1.lenght() << endl;
+            cout << "The length of the queue is: " << queue1.length() << endl;
         }
 
     // exit the while loop

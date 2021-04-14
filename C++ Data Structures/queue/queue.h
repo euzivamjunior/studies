@@ -26,6 +26,6 @@ class Queue{
     ItemType dequeue();
     // print all elements in the queue
     void print();
-    // return lenght (number) of elements on the stack
-    int lenght();
+    // return length (number) of elements on the stack
+    int length();
 };

@@ -20,7 +20,7 @@ int main(){
         cout << "Type 1 to insert a element!" << endl;
         cout << "Type 2 to remove a element!" << endl;
         cout << "Type 3 to print the stack elements" << endl;
-        cout << "Type 4 to print the lenght of the stack" << endl;
+        cout << "Type 4 to print the length of the stack" << endl;
 
         cin >> control;
 
@@ -38,9 +38,9 @@ int main(){
         // to print all stack elements
         } else if (control == 3){
             stack1.print();
-        // to print the stack lenght
+        // to print the stack length
         } else if (control == 4){
-            cout << "The lenght of the stack is: " << stack1.lenght() << endl;
+            cout << "The length of the stack is: " << stack1.length() << endl;
         }
 
     // exit the while loop

@@ -62,7 +62,7 @@ using namespace std;
         }
         cout << "]" << endl;
     }
-    // return lenght (number) of elements on the stack
-    int Stack::lenght(){
+    // return length (number) of elements on the stack
+    int Stack::length(){
         return size;
     }

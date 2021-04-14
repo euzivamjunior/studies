@@ -28,7 +28,7 @@ class Stack{
     ItemType pop();
     // print all elements on the stack
     void print();
-    // return lenght (number) of elements on the stack
-    int lenght();
+    // return length (number) of elements on the stack
+    int length();
 
 };

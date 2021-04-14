@@ -69,7 +69,7 @@ using namespace std;
         }
         cout << "]";
     }
-    // return lenght (number) of elements on the stack
-    int Queue::lenght(){
+    // return length (number) of elements on the stack
+    int Queue::length(){
         return (last - first);
     }
