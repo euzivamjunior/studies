@@ -1,6 +1,8 @@
 #include <iostream>
 #include "dynamic_queue.h"
+// to use nullptr
 #include <cstddef>
+// to use bad_alloc exception
 #include <new>
 
 using namespace std;
