@@ -8,10 +8,10 @@ int main(){
 
     cout << "Script - Hash Generator!" << endl;
 
-    cout << "Input the Hash size desired!" << endl;
+    cout << "Input the Hash size desired!: ";
     cin >> vector_size;
 
-    cout << "Type the max number of elements!" << endl;
+    cout << "Type the max number of elements: ";
     cin >> max_items;
 
     cout << "THe load factor is: " 
