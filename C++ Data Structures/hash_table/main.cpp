@@ -24,32 +24,34 @@ int main(){
     bool search;
 
     do{
+        cout << endl;
         cout << "Type 0 to stop the exit the script!" << endl;
         cout << "Type 1 to insert an element!" << endl;
         cout << "Type 2 to remove an element!" << endl;
         cout << "Type 3 to search by an element!" << endl;
         cout << "Type 4 to print the hash table elements" << endl;
+        cout << "Your choice: ";
         cin >> control;
 
         if (control == 1){
-            cout << "Type the Student School Registry" << endl;
+            cout << "Type the Student School Registry: ";
             cin >> sr;
 
-            cout << "Type the Student Name" << endl;
+            cout << "Type the Student Name: ";
             cin >> name;
 
             Student student(sr, name);
             // insert student object on in the hash
             student_hash.push(student);
         } else if (control == 2){
-            cout << "Type the Student School Registry" << endl;
+            cout << "Type the Student School Registry: ";
             cin >> sr;
 
             Student student(sr, " ");
             // delete the student object from the hash
             student_hash.to_delete(student);
         } else if (control == 3){
-            cout << "Type the Student School Registry" << endl;
+            cout << "Type the Student School Registry: ";
             cin >> sr;
 
             Student student(sr, " ");
@@ -59,14 +61,14 @@ int main(){
             if (search){
                 cout << "Student finded:" << endl;
                 cout << "School Registry: " << student.get_sr();
-                cout << "Name: " << student.get_name();
+                cout << "\tName: " << student.get_name() << endl;
             } else {
                 cout << "Student not found!" << endl;
             }
         } else if (control == 4){
             student_hash.print();
         }
-        
+
     } while (control != 0);
 
     return 0;

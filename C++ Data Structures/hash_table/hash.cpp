@@ -27,12 +27,17 @@ using namespace std;
     }
     // insert student in the hash
     void Hash::push(Student student){
-        // get local hash by computing hash function
-        int local = hash_function(student);
-        // store the student object
-        structure[local] = student;
-        // increment number_itens
-        number_items++;
+        if (is_full()){
+            cout << "The Hash is full" << endl;
+            cout << "The new Student can't be inserted" << endl;
+        } else{
+            // get local hash by computing hash function
+            int local = hash_function(student);
+            // store the student object
+            structure[local] = student;
+            // increment number_itens
+            number_items++;
+        }
     }
     void Hash::to_delete(Student student){
         // get local hash by computing hash function
@@ -78,8 +83,9 @@ using namespace std;
             // print values for each hash position that student object
             // has SR != -1.
             if (structure[index].get_sr() != -1){
-                cout << index << ":" << structure[index].get_sr();
-                cout << " " << structure[index].get_name() << endl;
+                cout << "index " << index;
+                cout<< "\tSchool Registry: " << structure[index].get_sr();
+                cout << "\tName: " << structure[index].get_name() << endl;
             }
         }
     }
