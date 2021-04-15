@@ -3,18 +3,18 @@
 class Hash{
     private:
     int hash_function(Student student);
-    int max_itens;
+    int max_items;
     int max_positions;
-    int number_itens;
+    int number_items;
     Student* structure;
 
     public:
-    Hash();
+    Hash(int vector_size, int max);
     ~Hash();
     bool is_full();
-    int get_lenght();
+    int get_length();
     void push(Student student);
     void to_delete(Student student);
-    void search(Student& student, bool& search);
+    void search(Student& student, bool& search_result);
     void print();
 };
