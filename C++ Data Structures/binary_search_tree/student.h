@@ -2,19 +2,18 @@
 /*
     the namespace std is required to use string var
     if want to avoid this, then use std::string to
-    declare a variable without require to declare
-    using namespace std
+    declare a variable.
 */
 using namespace std;
 
 class Student{
     private:
-    int sr;
+    int SR;
     string name;
 
     public:
     Student();
-    Student(int r, string n);
-    int get_sr();
+    Student(int s, string n);
     string get_name();
+    int get_sr();
 };
