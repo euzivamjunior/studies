@@ -105,7 +105,7 @@ using namespace std;
                 student = structure[local];
                 break;
             }
-            local = (local++) % max_positions;
+            local = (local + 1) % max_positions;
         }
     }
     void Hash::print(){
@@ -119,8 +119,8 @@ using namespace std;
             */
             if (structure[index].get_sr() > 0){
                 cout << "index " << index;
-                cout<< "\tSchool Registry: " << structure[index].get_sr();
-                cout << "\tName: " << structure[index].get_name() << endl;
+                cout<< "\t | School Registry: " << structure[index].get_sr();
+                cout << "\t| Name: " << structure[index].get_name() << endl;
             }
         }
     }
