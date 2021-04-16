@@ -15,7 +15,7 @@ int main(){
     cin >> max_items;
 
     while (vector_size <= max_items){
-        cout << "The load factor can't be greater than 1" << endl;
+        cout << "The load factor cannot be greater than or equal to 1" << endl;
         cout << "Please, type an max number elements smaller than "
              << "the Hash Size = " << vector_size << ": ";
         cin >> max_items; 
