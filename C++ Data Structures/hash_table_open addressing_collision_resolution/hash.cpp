@@ -42,7 +42,7 @@ using namespace std;
             while (structure[local].get_sr() > 0){
                 // If the local index becomes greater than max index of
                 // the hash, then returns to search by the first index
-                local = (local++) % max_positions;
+                local = (local + 1) % max_positions;
             }
             // store the student object
             structure[local] = student;
@@ -73,7 +73,7 @@ using namespace std;
                 found_element = true;
                 break;
             }
-            local = (local++) % max_positions;
+            local = (local + 1) % max_positions;
         }
         // if found_element is false, then the element wasn't found.
         if (!found_element){
