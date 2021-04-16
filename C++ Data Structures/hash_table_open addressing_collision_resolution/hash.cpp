@@ -33,6 +33,17 @@ using namespace std;
         } else{
             // get local hash by computing hash function
             int local = hash_function(student);
+            /*
+                while strucure[local] has SR > 0 (i.e. there's already
+                have an element stored in this position) keep going to
+                the next index hash, until there's an local empty or
+                available.
+            */
+            while (structure[local].get_sr() > 0){
+                // If the local index becomes greater than max index of
+                // the hash, then returns to search by the first index
+                local = (local++) % max_positions;
+            }
             // store the student object
             structure[local] = student;
             // increment number_itens
@@ -42,47 +53,71 @@ using namespace std;
     void Hash::to_delete(Student student){
         // get local hash by computing hash function
         int local = hash_function(student);
-        // if sr is different of -1, then, there are an element
-        // in the hash on 'local' position
-        if (structure[local].get_sr() != -1){
-            // change the local hash with an object containing default 
-            // empty values.
-            structure[local] = Student(-1, " ");
-            number_items--;
+        /*
+            While the structure[local].getsr() ins't -1 (empty), keep going
+            to search the student element to delete.
+            If while reachs an structure[local].get_sr() == -1, then there's
+            no element to be deleted.
+        */
+        bool found_element = false;
+        while (structure[local].get_sr() != -1){
+            /*
+                If local SR is equal to SR student, then remove the element
+                from the hash table, and mark the local as available 
+                Student(-2, " "), decrement number_items and break the loop.
+            */
+            if (structure[local].get_sr() == student.get_sr()){
+                cout << "Element Removed!" << endl;
+                structure[local] = Student(-2, " ");
+                number_items--;
+                found_element = true;
+                break;
+            }
+            local = (local++) % max_positions;
+        }
+        // if found_element is false, then the element wasn't found.
+        if (!found_element){
+            cout << "The element was not found" << endl;
+            cout << "No elements have been removed" << endl;
         }
     }
     void Hash::search(Student& student, bool& search_result){
         // get the local to search the current required student
         int local = hash_function(student);
-        // get the student from the local above
-        Student aux = structure[local];
+        search_result = false;
         /*
-            if the SR from the required student != current stored SR 
-            values in the Hash, then return false, otherwise update
-            object informations, then return true.
+            While the local SR ins't -1 (empty), keep going to search by 
+            the student element. 
+            If while reachs an  structure[local].get_sr() == -1, then the 
+            element was not found into the hash.
         */
-        if (student.get_sr() != aux.get_sr()){
-            search_result = false;
-        } else{
-            search_result = true;
-            /*
+        while (structure[local].get_sr() != -1){
+            if (structure[local].get_sr() == student.get_sr()){
+                search_result = true;
+                /*
                 The search for the student is made by the SR info. if
                 this student is finded in the Hash table, then the input 
                 Student object has all your values updated by the the 
                 object stored in the hash, thus, the current student
                 object of the search is completed with the remaining
                 informations values, like name.
-            */
-            student = aux;
+                */
+                student = structure[local];
+                break;
+            }
+            local = (local++) % max_positions;
         }
     }
     void Hash::print(){
         cout << "Hash Table (Hash Map)" << endl;
         // iterate in the hash table
         for (int index=0; index<max_positions; index++){
-            // print values for each hash position that student object
-            // has SR != -1.
-            if (structure[index].get_sr() != -1){
+            /*
+                print values for each hash position that student object
+                has SR > 0. (i.e. the index isn't an empty or available
+                position, but a relevant stored element.
+            */
+            if (structure[index].get_sr() > 0){
                 cout << "index " << index;
                 cout<< "\tSchool Registry: " << structure[index].get_sr();
                 cout << "\tName: " << structure[index].get_name() << endl;
