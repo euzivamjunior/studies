@@ -24,7 +24,7 @@ class BinarySearchTree{
     bool is_full();
     void insert(Student student);
     void remove(Student student);
-    void search(Student& student, bool& busca);
+    void search(Student& student, bool& found_element);
     void print_pre_order(Node* current_node);
     void print_in_order(Node* current_node);
     void print_pos_order(Node* current_node);

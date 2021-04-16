@@ -23,6 +23,10 @@
     }
     // the computer memory is full?
     bool BinarySearchTree::is_full(){
+        /*
+            Try to create a new node, if succeed, then, there are memory available
+            oterwise, the computer memory is full.
+        */
         try{
             Node* temp_node = new Node;
             delete temp_node;
@@ -103,8 +107,38 @@
     void BinarySearchTree::remove(Student student){
 
     }
-    void BinarySearchTree::search(Student& student, bool& busca){
+    void BinarySearchTree::search(Student& student, bool& found_element){
+        found_element = false;
+        // temporary Node (current Node) to go through the tree.
+        Node* current_node = root;
+        /*
+            Search the element by the rule:
+            Starting by the current Node as the root node, while current node is 
+            not null, compares the student SR with the current Node SR, if the 
+            student SR value was smaller than Node SR, then, current node 
+            becomes the left-node, if the student SR is greater than the current
+            Node SR, the the current Nodes becomes the right-node, otherwise the
+            student SR is equal to current Node SR, then the element was found.
 
+            The process described above runs until the current Node reach a
+            nullptr (element not found), or current SR be equal to student SR
+            (element found).
+
+            If the element was found, than the student object (containing only
+            SR information) becomes equal current element, which have the SR and
+            name value.
+        */
+        while (current_node != nullptr){
+            if (student.get_sr() < current_node->student.get_sr()){
+                current_node = current_node->left_child;
+            } else if (student.get_sr() > current_node->student.get_sr()){
+                current_node = current_node->right_child;
+            } else{
+                found_element = true;
+                student = current_node->student;
+                break;
+            }
+        }
     }
     void BinarySearchTree::print_pre_order(Node* current_node){
 
