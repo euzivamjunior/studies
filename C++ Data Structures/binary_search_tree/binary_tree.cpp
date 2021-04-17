@@ -105,7 +105,78 @@
         }
     }
     void BinarySearchTree::remove(Student student){
+        remove_search(student, root);
+    }
+    /*
+        Node*& current_node: (Node by reference) pointer to the current node,
+        not the current node indeed.
 
+        This function runs recursively until find the searched element.
+        i.e. when the SR student is equal to SR of the current_node.
+
+        Search by the student element by using recursion.
+        Starting by the root node (current node), if SR student is smaller than
+        the SR current node, then call recursively the remove_search function
+        with student object and the left child of the current node,
+        if SR student is greater than SR current node, then call the same
+        function with the student node and the right child of the current node,
+        otherwise, the SR student and SR current node are equal, then call the
+        delete_node() function.
+    */
+    void BinarySearchTree::remove_search(Student student, Node*& current_node){
+        if (student.get_sr() < current_node->student.get_sr()){
+            remove_search(student, current_node->left_child);
+        } else if (student.get_sr() > current_node->student.get_sr()){
+            remove_search(student, current_node->right_child);
+        } else{
+            delete_node(current_node);
+        }
+    }
+    void BinarySearchTree::delete_node(Node*& current_node){
+        Node* temp_node = current_node;
+        /*
+            IF the left child of the current node is null, then the current node pointer
+            becomes the right child and the temp node is deleted (searched node to delete).
+            this approach will works on the case on the current node has only the right 
+            child, when the current_node becomes the pointer to the right child, and
+            also works when there's no child on the node, because the right child is
+            nullptr, so the current_node becomes the pointer to nullptr.
+
+        */
+        if (current_node->left_child == nullptr){
+            current_node = current_node->right_child;
+            delete temp_node;
+        // similar to the rule above, the same rule is applied by the inverse (right) node.
+        } else if (current_node->right_child == nullptr){
+            current_node = current_node->left_child;
+            delete_node;
+        /*
+            In this case the node have both right and left child, then in this case it
+            needed to search by a succesor node of the current node that will becomes 
+            the current node value. After this, the student_successor (now duclicate as 
+            the current node as they have the same value) is deleted by the remove_search() 
+            function.
+        */
+        } else{
+            Student student_successor;
+            get_successor(student_successor, current_node);
+            current_node->student = student_successor;
+            remove_search(student_successor, current_node->right_child);
+        }
+    }
+    /*
+        (Student object by reference, to enable changes by the delete_node() function).
+        get_successor function runs by the following rule. moves the temp node to the right
+        child, then keep moving to the left child until the left_child of the temp node
+        becomes nullptr (i.e. there's no left-child), then the student_successor becomes
+        the temp_node student object.
+    */
+    void BinarySearchTree::get_successor(Student& student_successor, Node* temp_node){
+        temp_node = temp_node->right_child;
+        while (temp_node->left_child != nullptr){
+            temp_node = temp_node->left_child;
+        }
+        student_successor = temp_node->student;
     }
     void BinarySearchTree::search(Student& student, bool& found_element){
         found_element = false;
