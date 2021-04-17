@@ -59,7 +59,7 @@ int main(){
             student_hash.search(student, search);
             // if there are this student on the hash, then
             if (search){
-                cout << "Student finded:" << endl;
+                cout << "Student found:" << endl;
                 cout << "School Registry: " << student.get_sr();
                 cout << "\tName: " << student.get_name() << endl;
             } else {

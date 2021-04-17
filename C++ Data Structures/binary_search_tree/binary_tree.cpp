@@ -8,10 +8,21 @@
     }
     // Destructor function
     BinarySearchTree::~BinarySearchTree(){
-
+        delete_tree(root);
     }
+    /*
+        To delete the tree, the tree is traversed in the pos-order
+        call function to delete the left node,
+        call function to delete the right node,
+        delete the current node, and so on, until the current node
+        becomes nullptr.
+    */
     void BinarySearchTree::delete_tree(Node* current_node){
-
+        if (current_node != nullptr){
+            delete_tree(current_node->left_child);
+            delete_tree(current_node->right_child);
+            delete current_node;
+        }
     }
     // get root pointer
     Node* BinarySearchTree::get_root(){
@@ -52,8 +63,8 @@
                 root = new_node;
             // if the tree isn't empty, then search a new a position.
             } else{
-                // temporary Node (current Node) to go through the tree.
-                Node* temp_node = root;
+                // current Node to go through the tree.
+                Node* current_node = root;
                 /*
                     The element location is given by the following rule:
 
@@ -72,19 +83,19 @@
                     apply the same rule above by the node on the right.
 
                 */
-                while (temp_node != nullptr){
+                while (current_node != nullptr){
                     // if new value is smaller than the current node value
-                    if (student.get_sr() < temp_node->student.get_sr()){
+                    if (student.get_sr() < current_node->student.get_sr()){
                         /*
                             if (there's no child on the left), then new node 
                             becomes the left child of the current node.
                             else: current node move to the left node;
                         */
-                        if (temp_node->left_child == nullptr){
-                            temp_node->left_child = new_node;
+                        if (current_node->left_child == nullptr){
+                            current_node->left_child = new_node;
                             break;
                         } else{
-                            temp_node = temp_node->left_child;
+                            current_node = current_node->left_child;
                         }
                     // else: the new value is greater than current node value
                     } else{
@@ -93,11 +104,11 @@
                             becomes the right child of the current node.
                             else: current node move to the right node;
                         */
-                        if (temp_node->right_child == nullptr){
-                            temp_node->right_child = new_node;
+                        if (current_node->right_child == nullptr){
+                            current_node->right_child = new_node;
                             break;
                         } else{
-                            temp_node = temp_node->right_child;
+                            current_node = current_node->right_child;
                         }
                     }
                 }
@@ -149,7 +160,7 @@
         // similar to the rule above, the same rule is applied by the inverse (right) node.
         } else if (current_node->right_child == nullptr){
             current_node = current_node->left_child;
-            delete_node;
+            delete temp_node;
         /*
             In this case the node have both right and left child, then in this case it
             needed to search by a succesor node of the current node that will becomes 
@@ -211,12 +222,49 @@
             }
         }
     }
+    /*
+        The pre-order print algorythm is given by the following rule:
+        Starting with the current node, print this node then calls
+        recursively the same function to print(left-child node),
+        then calls recursively the same function to
+        print(right-child node).
+    */
     void BinarySearchTree::print_pre_order(Node* current_node){
-
+        if (current_node != nullptr){
+            cout << current_node->student.get_name() << "\t"
+                 << current_node->student.get_sr() << endl;
+            print_pre_order(current_node->left_child);
+            print_pre_order(current_node->right_child);
+        }
     }
     void BinarySearchTree::print_in_order(Node* current_node){
-
+        if (current_node != nullptr){
+            print_in_order(current_node->left_child);
+            cout << current_node->student.get_name() << "\t"
+                 << current_node->student.get_sr() << endl;
+            print_in_order(current_node->right_child);
+        }
     }
     void BinarySearchTree::print_pos_order(Node* current_node){
-
+        if (current_node != nullptr){
+            print_pos_order(current_node->left_child);
+            print_pos_order(current_node->right_child);
+            cout << current_node->student.get_name() << "\t"
+                 << current_node->student.get_sr() << endl;
+        }
     }
+/*
+    PRINTING BYNARY TREE EXAMPLE:
+
+          4
+        /   \
+      1       6
+       \     / \
+        3   5   7
+       /
+      2
+
+    PRE-ORDER: 4, 1, 3, 2, 6, 5, 7
+    IN-ORDER:  1, 2, 3, 4, 5, 6, 7
+    POS-ORDER: 2, 3, 1, 5, 7, 6, 4
+*/
