@@ -322,7 +322,7 @@ using namespace std;
             ========================================================================
             ||     -1     ||    right rotation   ||       0       ||       0      ||
             ||      0     ||    right rotation   ||      -1       ||       1      ||
-            ||      1     || right-left rotation ||======>GRAND CHILD BF RULE<======
+            ||      1     || left-right rotation ||======>GRAND CHILD BF RULE<======
             ========================================================================
 
             for PARENT BALANCE FACTOR = 2
@@ -330,7 +330,7 @@ using namespace std;
             || LEFT-CHILD ||    TYPE ROTATION    || new PARENT BF || new CHILD BF ||
             ||      1     ||    left rotation    ||       0       ||       0      ||
             ||      0     ||    left rotation    ||       1       ||      -1      ||
-            ||     -1     || left-right rotation ||======>GRAND CHILD BF RULE<======
+            ||     -1     || right-left rotation ||======>GRAND CHILD BF RULE<======
             ========================================================================
         */
         if (parent->balance_factor == -2){
