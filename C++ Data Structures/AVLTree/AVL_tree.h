@@ -1,5 +1,5 @@
 #include <iostream>
-#include <student.h>
+#include "student.h"
 
 struct Node{
     // Student object element
@@ -54,15 +54,15 @@ class AVLTree{
     // AVL TREE - NEW METHODS
 
     // right simple node rotation
-    void right_rotation(Node*& tree);
+    void right_rotation(Node*& parent);
     // left simple node rotation
-    void left_rotation(Node*& tree);
+    void left_rotation(Node*& parent);
     // double rotation (left->right)
-    void left_right_rotation(Node*& tree);
+    void left_right_rotation(Node*& parent);
     // double rotation (right->left)
-    void right_left_rotation(Node*& tree);
+    void right_left_rotation(Node*& parent);
     // make node rotation
-    void make_rotation(Node*& tree);
+    void make_rotation(Node*& parent);
     // insertion function by recursive calls
     void recursive_insertion(Node*& current_node, Student student, bool& grow);
 };

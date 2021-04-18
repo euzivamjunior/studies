@@ -2,6 +2,8 @@
 #include <cstddef>
 #include "AVL_tree.h"
 
+using namespace std;
+
     // Constructor function
     AVLTree::AVLTree(){
         root = nullptr;
@@ -58,7 +60,7 @@
     */
     void AVLTree::recursive_insertion(Node*& current_node, Student student, bool& grow){
         // Insert the new element when the current node reachs a null position.
-        if (current_node == NULL) {
+        if (current_node == nullptr) {
             current_node = new Node;
             current_node->right_child = nullptr;
             current_node->left_child = nullptr;
@@ -354,7 +356,7 @@
                 if (grandchild->balance_factor == -1){
                     parent->balance_factor = 1;
                     child->balance_factor = 0;
-                } else if (grandchild->balance_factor = 0){
+                } else if (grandchild->balance_factor == 0){
                     parent->balance_factor = 0;
                     child->balance_factor = 0;
                 } else if (child->balance_factor == 1){
@@ -362,9 +364,9 @@
                     child->balance_factor = -1;
                 }
                 grandchild->balance_factor = 0;
-                right_left_rotation(parent);
+                left_right_rotation(parent);
             }
-        } else if(parent->balance_factor == 2)
+        } else if(parent->balance_factor == 2){
             child = parent->right_child;
 
             // single left rotation
@@ -387,14 +389,15 @@
                 if (grandchild->balance_factor == -1){
                     parent->balance_factor = 0;
                     child->balance_factor = 1;
-                } else if (grandchild->balance_factor = 0){
+                } else if (grandchild->balance_factor == 0){
                     parent->balance_factor = 0;
                     child->balance_factor = 0;
                 } else if (child->balance_factor == 1){
                     parent->balance_factor = -1;
-                    child->balance_factor = -0;
+                    child->balance_factor = 0;
                 }
                 grandchild->balance_factor = 0;
-                left_right_rotation(parent);
+                right_left_rotation(parent);
             }
+        }
     }
