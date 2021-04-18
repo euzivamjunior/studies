@@ -111,10 +111,34 @@
         remove_search(student, root, shrink);
     }
     /*
-        MODIFIED
+        #######
     */
     void AVLTree::remove_search(Student student, Node*& current_node, bool& shrink){
-        //TODO
+        if (student.get_sr() < current_node->student.get_sr()){
+            remove_search(student, current_node->left_child, shrink);
+            if (shrink){
+                current_node->balance_factor += 1;
+            }
+        } else if (student.get_sr() > current_node->student.get_sr()){
+            remove_search(student, current_node->right_child, shrink);
+            if (shrink){
+                current_node->balance_factor -= 1;
+            }
+        } else{
+            delete_node(current_node, shrink);
+        }
+        // make rotation if the current node is not null.
+        if (current_node != nullptr){
+            make_rotation(current_node);
+            /*
+            This statement is to apply the following rule, when a current node
+            balance factor becomes 0, then all its upper nodes do not have its
+            balance factor changed, i.e. there's no grow, so it's set as false.
+            */
+            if (shrink && current_node->balance_factor != 0){
+                shrink = false;
+            }
+        }
     }
     void AVLTree::delete_node(Node*& current_node, bool& shrink){
         Node* temp_node = current_node;
@@ -284,7 +308,93 @@
     }
     // make node rotation
     void AVLTree::make_rotation(Node*& parent){
-        
+        Node* child;
+        Node* grandchild; // for double rotation
 
+        /*
+            The type rotation is made by the parent child balance factor rule.
+            ========================================================================
+            for PARENT BALANCE FACTOR = -2
+            ========================================================================
+            || LEFT-CHILD ||    TYPE ROTATION    || new PARENT BF || new CHILD BF ||
+            ========================================================================
+            ||     -1     ||    right rotation   ||       0       ||       0      ||
+            ||      0     ||    right rotation   ||      -1       ||       1      ||
+            ||      1     || right-left rotation ||======>GRAND CHILD BF RULE<======
+            ========================================================================
+
+            for PARENT BALANCE FACTOR = 2
+            ========================================================================
+            || LEFT-CHILD ||    TYPE ROTATION    || new PARENT BF || new CHILD BF ||
+            ||      1     ||    left rotation    ||       0       ||       0      ||
+            ||      0     ||    left rotation    ||       1       ||      -1      ||
+            ||     -1     || left-right rotation ||======>GRAND CHILD BF RULE<======
+            ========================================================================
+        */
+        if (parent->balance_factor == -2){
+            child = parent->left_child;
+
+            // single right rotation
+            if (child->balance_factor == -1){
+                parent->balance_factor = 0;
+                child->balance_factor = 0;
+                right_rotation(parent);
+            // single right rotation
+            } else if (child->balance_factor == 0){
+                parent->balance_factor = -1;
+                child->balance_factor = 1;
+                right_rotation(parent);
+            /*
+                First update parent and child balance factor, by the rule,
+                followint the current grandchild balance factor, then
+                make right-left rotation by parent node.
+            */
+            } else if (child->balance_factor == 1){
+                grandchild = child->right_child;
+                if (grandchild->balance_factor == -1){
+                    parent->balance_factor = 1;
+                    child->balance_factor = 0;
+                } else if (grandchild->balance_factor = 0){
+                    parent->balance_factor = 0;
+                    child->balance_factor = 0;
+                } else if (child->balance_factor == 1){
+                    parent->balance_factor = 0;
+                    child->balance_factor = -1;
+                }
+                grandchild->balance_factor = 0;
+                right_left_rotation(parent);
+            }
+        } else if(parent->balance_factor == 2)
+            child = parent->right_child;
+
+            // single left rotation
+            if (child->balance_factor == 1){
+                parent->balance_factor = 0;
+                child->balance_factor = 0;
+                left_rotation(parent);
+            // single left rotation
+            } else if (child->balance_factor == 0){
+                parent->balance_factor = 1;
+                child->balance_factor = -1;
+                left_rotation(parent);
+            /*
+                First update parent and child balance factor, by the rule,
+                followint the current grandchild balance factor, then
+                make left-child rotation by parent node.
+            */
+            } else if (child->balance_factor == -1){
+                grandchild = child->left_child;
+                if (grandchild->balance_factor == -1){
+                    parent->balance_factor = 0;
+                    child->balance_factor = 1;
+                } else if (grandchild->balance_factor = 0){
+                    parent->balance_factor = 0;
+                    child->balance_factor = 0;
+                } else if (child->balance_factor == 1){
+                    parent->balance_factor = -1;
+                    child->balance_factor = -0;
+                }
+                grandchild->balance_factor = 0;
+                left_right_rotation(parent);
+            }
     }
-    // insertion function by recursive calls
