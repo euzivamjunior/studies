@@ -9,9 +9,9 @@ typedef string ItemType;
 class Graph{
     private:
     int null_edge; // pt-BR aresta nula.
-    int max_edges;
-    int num_edges;
-    ItemType* vertex; // pt-BR vértice (nó).
+    int max_vertices;
+    int num_vertices;
+    ItemType* vertices; // (nó).
     /*
         '**': pointer to a pointer,
         in this case to indicate an array of arrays,
@@ -24,7 +24,7 @@ class Graph{
     ~Graph();
     int get_index(ItemType item);
     bool is_full();
-    void insert_vertex(ItemType item);
+    void insert_vertex(ItemType item); // pt-BR vertex = vértice
     void insert_edge(ItemType output_node, ItemType input_node, int weight); // node = vertex
     int get_height(ItemType output_node, ItemType input_node);
     int get_degree(ItemType item);
