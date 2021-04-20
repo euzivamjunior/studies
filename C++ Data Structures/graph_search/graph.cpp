@@ -115,10 +115,71 @@ void Graph::clear_highlighter(){
 }
 
 // breadth_first_search (BFS) algorithm | pt-BR busca em largura
-void breadth_first_search(ItemType origin, ItemType destination){
+void Graph::breadth_first_search(ItemType origin, ItemType destination){
+    DynamicQueue queue_vertices;
+    bool found = false;
+    clear_highlighter();
+    queue_vertices.enqueue(origin);
+
+    do{
+        ItemType current_vertex = queue_vertices.dequeue();
+        // If found
+        if (current_vertex == destination){
+            cout << "Exploring: " << current_vertex << endl;
+            cout << "Path found!" << endl;
+            found = true;
+        } else{
+            int index = get_index(current_vertex);
+            cout << "Exploring: " << current_vertex << endl;
+            // explore all edges (adjacents vertex) from the current vertex, if not highlighted.
+            for (int postition=0; postition<max_vertices; postition++){
+                if (adjacency_matrix[index][postition] != null_edge){
+                    if (!highlighter[postition]){
+                        // "Enqueue explored (visited) node (vertex)"
+                        cout << "Enqueue: " << vertices[postition] << endl;
+                        queue_vertices.enqueue(vertices[postition]);
+                        highlighter[postition] = true;
+                    }
+                }
+            }
+        }
+    } while (!queue_vertices.is_empty() && !found);
     
+    if (!found){
+        cout << "Path not found :(" << endl;
+    }
 }
 // depth first search (DFS) algorithm | pt-BR busca em profundidade
-void depth_first_search(ItemType origin, ItemType destination){
+void Graph::depth_first_search(ItemType origin, ItemType destination){
+    DynamicStack stack_vertices;
+    bool found = false;
+    clear_highlighter();
+    stack_vertices.push(origin);
+    do{
+        ItemType current_vertex = stack_vertices.pull();
+        // If found
+        if (current_vertex == destination){
+            cout << "Exploring: " << current_vertex << endl;
+            cout << "Path found!" << endl;
+            found = true;
+        } else{
+            int index = get_index(current_vertex);
+            cout << "Exploring: " << current_vertex << endl;
+            // explore all edges (adjacents vertex) from the current vertex, if not highlighted.
+            for (int postition=0; postition<max_vertices; postition++){
+                if (adjacency_matrix[index][postition] != null_edge){
+                    if (!highlighter[postition]){
+                        // "Stacking explored (visited) node (vertex)"
+                        cout << "Stacking up: " << vertices[postition] << endl;
+                        stack_vertices.push(vertices[postition]);
+                        highlighter[postition] = true;
+                    }
+                }
+            }
+        }
+    } while (!stack_vertices.is_empty() && !found);
 
+    if (!found){
+        cout << "Path not found :(" << endl;
+    }
 }
