@@ -5,6 +5,9 @@ using namespace std;
 
 int main(){
     int max, null_edge_value;
+
+    cout << "ADJACENCY MATRIX - SIMPLE GRAPH, UNDIRECTED & WEIGHTED." << endl << endl;
+
     cout << "Enter the maximum vertices number: ";
     cin >> max;
 
