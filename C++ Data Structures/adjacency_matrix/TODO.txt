@@ -1,0 +1,2 @@
+TO-DO:
+    Make sure the vertex exists before trying to add it an edge. 

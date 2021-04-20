@@ -4,9 +4,9 @@
 using namespace std;
 
 Graph::Graph(int m_edge, int n_edge){ // Constructor
-    int num_vertices = 0;
-    int max_vertices = m_edge;
-    int null_edge = n_edge;
+    num_vertices = 0;
+    max_vertices = m_edge;
+    null_edge = n_edge;
 
     // declare ItemType vector with n (max_vertices) vertices
     vertices = new ItemType[max_vertices];

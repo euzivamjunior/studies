@@ -11,7 +11,7 @@ int main(){
     cout << "Enter the maximum vertices number: ";
     cin >> max;
 
-    cout << "Enter the value representation for null edge:  ";
+    cout << "Enter the value representation for null edge: ";
     cin >> null_edge_value;
 
     Graph graph1(max, null_edge_value);
@@ -21,13 +21,13 @@ int main(){
 
     do{
         cout << endl;
-        cout << "Enter 0 to stop the exit the script!" << endl;
+        cout << "Enter 0 to stop the script!" << endl;
         cout << "Enter 1 to insert a vertex!" << endl;
-        cout << "Enter 2 to remove a vertex!" << endl;
+        cout << "Enter 2 to insert an edge!" << endl;
         cout << "Enter 3 to print the degree of an vertex!" << endl;
         cout << "Enter 4 to print the weight of an edge" << endl;
-        cout << "Enter 4 to print the adjacency matrix" << endl;
-        cout << "Enter 4 to print all the vertices" << endl;
+        cout << "Enter 5 to print the adjacency matrix" << endl;
+        cout << "Enter 6 to print all the vertices" << endl;
         cout << "Your choice: ";
         cin >> control;
 
