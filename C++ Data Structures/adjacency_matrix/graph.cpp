@@ -69,7 +69,7 @@ void Graph::insert_edge(ItemType output_node, ItemType input_node, int weight){ 
     adjacency_matrix[row][column] = weight;
     adjacency_matrix[column][row] = weight; // in a directed graph, remove this line.
 }
-int Graph::get_height(ItemType output_node, ItemType input_node){
+int Graph::get_weight(ItemType output_node, ItemType input_node){
     int row = get_index(output_node);
     int column = get_index(input_node);
     return (adjacency_matrix[row][column]);

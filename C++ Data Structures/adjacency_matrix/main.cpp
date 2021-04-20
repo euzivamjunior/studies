@@ -50,7 +50,14 @@ int main(){
             value = graph1.get_degree(item1);
             cout << "The " << item1 << " vertex degree is: " << value << endl;
         } else if (control == 4){
+            cout << "Enter the output vertex: ";
+            cin >> item1;
 
+            cout << "Enter the input vertex: ";
+            cin >> item2;
+
+            value = graph1.get_weight(item1, item2);
+            cout << "The weight of this edge is: " << value << endl;
         } else if (control == 5){
             graph1.print_matrix();
         } else if (control == 6){

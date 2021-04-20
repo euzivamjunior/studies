@@ -26,7 +26,7 @@ class Graph{
     bool is_full();
     void insert_vertex(ItemType item); // pt-BR vertex = vértice
     void insert_edge(ItemType output_node, ItemType input_node, int weight); // node = vertex
-    int get_height(ItemType output_node, ItemType input_node);
+    int get_weight(ItemType output_node, ItemType input_node);
     int get_degree(ItemType item);
     void print_matrix();
     void print_vertices();
