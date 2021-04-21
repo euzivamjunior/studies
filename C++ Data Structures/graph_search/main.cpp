@@ -6,7 +6,9 @@ using namespace std;
 int main(){
     int max, null_edge_value;
 
-    cout << "GRAPH SEARCH - SIMPLE GRAPH, DIRECTED & WEIGHTED." << endl << endl;
+    cout << "GRAPH SEARCH - SIMPLE GRAPH, DIRECTED & WEIGHTED." << endl;
+    cout << "BREADTH-FIST SEARCH AND DEPTH-FIRST SEARCH ALGORITHMS" << endl;
+    cout << "=====================================================" << endl << endl;
 
     cout << "Enter the maximum vertices number: ";
     cin >> max;
