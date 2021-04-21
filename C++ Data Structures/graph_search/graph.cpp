@@ -118,7 +118,9 @@ void Graph::clear_highlighter(){
 void Graph::breadth_first_search(ItemType origin, ItemType destination){
     DynamicQueue queue_vertices;
     bool found = false;
+    // uncheck all the vertices
     clear_highlighter();
+    // start search vertex
     queue_vertices.enqueue(origin);
 
     do{
@@ -153,7 +155,9 @@ void Graph::breadth_first_search(ItemType origin, ItemType destination){
 void Graph::depth_first_search(ItemType origin, ItemType destination){
     DynamicStack stack_vertices;
     bool found = false;
+    // uncheck all the vertices
     clear_highlighter();
+    // start search vertex
     stack_vertices.push(origin);
     do{
         ItemType current_vertex = stack_vertices.pull();
