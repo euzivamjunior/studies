@@ -1,0 +1,2 @@
+.\dist\app.exe
+pause
