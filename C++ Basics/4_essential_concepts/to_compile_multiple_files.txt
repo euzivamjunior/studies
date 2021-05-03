@@ -1,0 +1,16 @@
+To compile multiple times, it can be done by using a .bat file
+It are an example of this approach in the tiny project.
+
+Or it can be done in this way:
+- On CMD
+- Open the current folder with c++ files
+- run the following command
+	g++ main.cpp module.cpp -o main.exe
+		where:
+		main.cpp: main file
+		module.cpp: dependencie function cpp file
+		-o main.exe: compiled file output name
+	(if have multiple dependencies file, just add it
+	 separated by spaces)
+	g++ main.cpp mod1.cpp mod2.cpp modn.cpp -o main.exe
+- then, run the main.exe file created to run the script
