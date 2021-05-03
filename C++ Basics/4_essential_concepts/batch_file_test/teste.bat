@@ -1,0 +1,1 @@
+g++ script/*.cpp -o new/for_1.exe
